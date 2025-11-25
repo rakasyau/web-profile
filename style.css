@@ -1,0 +1,245 @@
+:root {
+    /* Default: DARK THEME */
+    --primary: #4facfe;
+    --secondary: #00f2fe;
+    
+    --bg-color: #0a0f24;
+    --text-color: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.6);
+    
+    /* Glassmorphism Dark */
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: rgba(0, 0, 0, 0.37);
+    
+    --navbar-scrolled: rgba(10, 15, 36, 0.95);
+    --hero-gradient: radial-gradient(circle at center, #1b2744 0%, #060814 100%);
+    
+    --card-hover-shadow: rgba(0, 242, 254, 0.2);
+}
+
+/* LIGHT THEME OVERRIDES */
+[data-theme="light"] {
+    --bg-color: #f0f4f8;
+    --text-color: #212529;
+    --text-muted: #6c757d;
+
+    /* Glassmorphism Light (Milky Glass) */
+    --glass-bg: rgba(255, 255, 255, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --glass-shadow: rgba(149, 157, 165, 0.2);
+
+    --navbar-scrolled: rgba(255, 255, 255, 0.95);
+    --hero-gradient: radial-gradient(circle at center, #e0eafc 0%, #cfdef3 100%);
+    
+    --card-hover-shadow: rgba(79, 172, 254, 0.3);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+h1, h2, h3, h4, .navbar-brand {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* --- PRELOADER --- */
+#preloader {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #050711;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loader-text {
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 5px;
+    animation: pulse 1.5s infinite;
+    color: #fff;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+    transition: 0.4s ease;
+    padding: 15px 0;
+}
+.navbar.scrolled {
+    background: var(--navbar-scrolled) !important;
+    backdrop-filter: blur(10px);
+    padding: 10px 0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.navbar-light-mode-fix .nav-link {
+    color: var(--text-color) !important;
+}
+.nav-link {
+    color: #fff;
+    position: relative;
+    font-weight: 500;
+}
+[data-theme="light"] .navbar.scrolled .nav-link {
+    color: #333;
+}
+
+/* THEME TOGGLE BUTTON */
+.theme-btn {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-color);
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.theme-btn:hover {
+    transform: rotate(15deg) scale(1.1);
+}
+
+/* --- HERO SECTION --- */
+#hero {
+    height: 100vh;
+    background: var(--hero-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s ease;
+}
+
+/* Dynamic Background Blobs */
+.blob {
+    position: absolute;
+    filter: blur(80px);
+    z-index: 0;
+    opacity: 0.6;
+    animation: moveBlob 10s infinite alternate;
+}
+.blob-1 { top: 10%; left: 10%; width: 300px; height: 300px; background: #0037ff; }
+.blob-2 { bottom: 10%; right: 10%; width: 400px; height: 400px; background: #00c6ff; }
+
+[data-theme="light"] .blob { opacity: 0.3; }
+
+@keyframes moveBlob {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, -30px) scale(1.1); }
+}
+
+.hero-content { z-index: 2; text-align: center; }
+
+[data-theme="light"] #hero h1, 
+[data-theme="light"] #hero .lead {
+    color: #212529 !important;
+}
+[data-theme="light"] #hero .text-light {
+    color: #212529 !important;
+}
+
+/* Profile Glitch/Glow Effect */
+.profile-container {
+    position: relative;
+    width: 200px; height: 200px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    padding: 5px;
+    background: linear-gradient(45deg, var(--primary), #ffae00);
+    box-shadow: 0 0 30px rgba(0, 242, 254, 0.4);
+}
+.profile-img {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--bg-color);
+}
+
+/* --- GLASSMORPHISM CARDS --- */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px 0 var(--glass-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.4s ease;
+}
+.glass-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px var(--card-hover-shadow);
+}
+
+.text-adaptive-muted {
+    color: var(--text-muted) !important;
+}
+
+/* --- SKILLS --- */
+.progress {
+    height: 12px;
+    background: rgba(128, 128, 128, 0.2);
+    border-radius: 10px;
+    overflow: visible;
+}
+.progress-bar {
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+/* --- VIDEO TABS --- */
+.nav-pills .nav-link {
+    color: var(--text-muted);
+    border-radius: 30px;
+    padding: 10px 25px;
+    transition: all 0.3s;
+}
+.nav-pills .nav-link.active {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 242, 254, 0.4);
+}
+
+/* --- SOCIAL BUTTONS --- */
+.social-btn {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; color: var(--text-color);
+    text-decoration: none;
+    border: 1px solid var(--glass-border);
+    transition: 0.3s;
+}
+.social-btn:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-5px) rotate(360deg);
+}
+
+/* --- REVEAL ANIMATION --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Light mode button override */
+[data-theme="light"] .btn-outline-light {
+    color: var(--primary);
+    border-color: var(--primary);
+}
+[data-theme="light"] .btn-outline-light:hover {
+    background-color: var(--primary);
+    color: #fff;
+}
